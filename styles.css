@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Space+Grotesk:wght@600&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.container{
+    /* #27374D */
+    background-color: #171717; 
+    color: white;
+    width: 40%;
+    margin: 4rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input{
+    border:none;
+    background: #1e1e1e;
+    outline: none;
+    color: #fff;
+    padding: 0.6rem 2.5rem;
+    border-radius: 6px;
+}
+
+input::placeholder{
+    color:white;
+}
+
+.search{
+    position: relative;
+}
+
+.search i{
+    position: absolute;
+    color:white;
+    left:10px;
+    top: 10px;
+    font-size: 16px;
+}
+
+.units{
+    font-size: 1.5rem;
+}
+
+.units span{
+    cursor: pointer;
+}
+
+.units span:first-child{
+    margin-right: 0.6rem;
+}
+
+.body{
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.data{
+    font-size: 15px;
+    margin-bottom: 2rem;
+}
+
+.forecast{
+    background: #1e1e1e;
+    display: inline-block;
+    border-radius: 30px;
+    padding: 0.5rem 1.1rem;
+}
+
+.temp{
+    font-size: 1.7rem;
+}
+
+.icon img{
+    width: 100px;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1rem;
+    margin-top: 2.9rem;
+}
+
+.minmax{
+    display: flex;
+    justify-content: conter;
+}
+.minmax p{
+    font-size: 15px;
+    margin: 0.5rem;
+}
+
+.card{
+    display: flex;
+    align-items: center;
+    border-radius: 11px;
+    padding: 1rem;
+    background: #1e1e1e;
+}
+.card i{
+    font-size: 1.5rem;
+    margin-right: 1.1rem;
+}
+
+.card p{
+    font-size: 14px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:940px){
+    .container{
+        width: 90%;
+    }
+    .header{
+        flex-direction: column;
+    }
+    .units{
+        margin-top: 0.9rem;
+    }
+}
+@media(max-width:400px){
+    .info{
+        grid-template-columns: none;
+    }
+}
