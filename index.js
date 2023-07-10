@@ -1,26 +1,45 @@
 
 //giving some defaults
-let defaultCity = "Los Angeles";
+let defaultCity = "California";
 let units = "metric";
 
 //Getting selector
 let city = document.querySelector(".city");
 //for date and time
 let dt = document.querySelector(".data");
-function convertTime(timestamp,timezone){
-    const conv = timezone/3600; //converting seconds to hours
+function convertTime(timestamp, timezone) {
+    const convert = timezone/3600;
     const date = new Date(timestamp*1000);
-    const options = {
+    const options={
         weekday:'long',
         day:'numeric',
         month:'long',
         year:'numeric',
         hour:'numeric',
-        timezone:`Etc/GMT${conv >= 0 ? "-" : "+"}${Math.abs(conv)}`,
-        hour12:true,
+        minute:'numeric',
+        timeZone:`Etc/GMT${convert>=0?"-":"+"}${Math.abs(convert)}`,
+        hour12:true
     };
-    return date.toLocaleString("en-US",options);
+    const optionsInd = {
+        weekday:'long',
+        day:'numeric',
+        month:'long',
+        year:'numeric',
+    }
+    return date.toLocaleString("en-us",options);
 }
+function convertTimeIND() {
+    const date = new Date();
+    
+    const optionsInd = {
+        weekday:'long',
+        day:'numeric',
+        month:'long',
+        year:'numeric',
+    }
+    return date.toLocaleString("en-us",optionsInd);
+}
+
 
 let forecast = document.querySelector(".forecast");
 let img = document.querySelector(".img");
@@ -72,8 +91,8 @@ function getWeather(){
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&appid=${entry}&units=${units}`).then(res=>res.json())
     .then(data=>{
         console.log(data);
+        document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?"+data.name+"')";
         city.innerHTML=`${data.name}, ${convertCountryCode(data.sys.country)}`;
-        dt.innerHTML = convertTime(data.dt,data.timezone);
         forecast.innerHTML = `<p>${data.weather[0].main}`;
         temperature.innerHTML = `${data.main.temp.toFixed()}&#176`; //toFixed() method is being used to round off the temo to nearest whole integer
         img.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="">`;
@@ -82,8 +101,12 @@ function getWeather(){
         humidity.innerHTML = `${data.main.humidity}%`;
         wind.innerHTML = `${data.wind.speed}${units==="imperial" ? "mph" :"m/s"}`;
         pressure.innerHTML =`${data.main.pressure} hPa`
-        
-        document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?"+data.name+"')";
+        if(convertCountryCode(data.sys.country)==="India"){
+            dt.innerHTML = convertTimeIND(data.dt,data.timezone);
+        }
+        else{
+           dt.innerHTML = convertTime(data.dt,data.timezone);
+        }
     })
 }
 
