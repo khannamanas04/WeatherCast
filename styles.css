@@ -8,7 +8,6 @@
 }
 
 .container{
-    /* #27374D */
     background-color: #171717; 
     color: white;
     width: 40%;
@@ -94,7 +93,7 @@ input::placeholder{
 
 .minmax{
     display: flex;
-    justify-content: conter;
+    justify-content: center;
 }
 .minmax p{
     font-size: 15px;
@@ -121,7 +120,7 @@ input::placeholder{
 
 @media(max-width:940px){
     .container{
-        width: 90%;
+        width: 80%;
     }
     .header{
         flex-direction: column;
@@ -131,6 +130,7 @@ input::placeholder{
     }
 }
 @media(max-width:400px){
+    
     .info{
         grid-template-columns: none;
     }

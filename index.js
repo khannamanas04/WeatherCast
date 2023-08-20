@@ -7,6 +7,8 @@ let units = "metric";
 let city = document.querySelector(".city");
 //for date and time
 let dt = document.querySelector(".data");
+
+//stackoverflow
 function convertTime(timestamp, timezone) {
     const convert = timezone/3600;
     const date = new Date(timestamp*1000);
@@ -20,12 +22,7 @@ function convertTime(timestamp, timezone) {
         timeZone:`Etc/GMT${convert>=0?"-":"+"}${Math.abs(convert)}`,
         hour12:true
     };
-    const optionsInd = {
-        weekday:'long',
-        day:'numeric',
-        month:'long',
-        year:'numeric',
-    }
+    
     return date.toLocaleString("en-us",options);
 }
 function convertTimeIND() {
@@ -60,7 +57,7 @@ function convertCountryCode(country){
 //Searching 
 document.querySelector(".search").addEventListener('submit',event=>{
     const search = document.querySelector(".formsearch");
-    event.preventDefault();
+    event.preventDefault(); // preventing the default action from happening
     //changing the city value
     defaultCity = search.value;
     getWeather();
@@ -93,8 +90,8 @@ function getWeather(){
         console.log(data);
         document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?"+data.name+"')";
         city.innerHTML=`${data.name}, ${convertCountryCode(data.sys.country)}`;
-        forecast.innerHTML = `<p>${data.weather[0].main}`;
-        temperature.innerHTML = `${data.main.temp.toFixed()}&#176`; //toFixed() method is being used to round off the temo to nearest whole integer
+        forecast.innerHTML = `<p>${data.weather[0].main}</p>`;
+        temperature.innerHTML = `${data.main.temp.toFixed()}&#176`; //toFixed() method is being used to round off the temp to nearest whole integer
         img.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="">`;
         minmax.innerHTML = `<p>Min: ${data.main.temp_min.toFixed()}&#176</p><p>Max: ${data.main.temp_max.toFixed()}&#176</p>`;
         realfeel.innerHTML = `${data.main.feels_like.toFixed()}&#176`;
